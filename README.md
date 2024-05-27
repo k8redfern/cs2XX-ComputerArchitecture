@@ -6,6 +6,9 @@ Your typical computer architecture course starting with transistors and ending w
 
 The course can be found [here](http://modsurski.com/csci263).
 
+This course makes use of [Digital](https://github.com/hneemann/Digital) to create circuits. 
+
+
 
 # Setup
 
@@ -18,6 +21,26 @@ python -m venv --clear --prompt cs263 venv
 venv\Scripts\activate.bat
 pip install .
 ```
+
+
+## Bash
+
+```sh
+python3.11 -m venv --clear --prompt cs263 venv
+. venv/bin/activate
+pip install .
+```
+
+
+
+# Unit Tests
+
+Assuming Java and [Digital](https://github.com/hneemann/Digital) are available.
+
+```sh
+java -cp Digital.jar CLI test ./path_to_schematics/schematic_with_tests.dig
+```
+
 
 
 # Build
