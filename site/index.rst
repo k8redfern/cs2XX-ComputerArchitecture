@@ -62,7 +62,18 @@ Office Hours
     :maxdepth: 1
     :numbered:
 
-    topics/intro/introduction
+    topics/numbers/number-bases
+    topics/logic/truth-tables
+    topics/transistors-gates/transistors-gates
+    topics/logic/combinatorial-logic
+    topics/memory/d-latch
+    topics/logic/sequential-logic
+    topics/arithmetic/adder
+    topics/numbers/2s-complement
+    topics/logic/logic-engine
+    topics/logic/conditionals
+    topics/numbers/encoding-decoding
+    topics/alu/alu
 
 
 
