@@ -35,7 +35,7 @@ Counting in Base Ten
 
 * Counting in base ten consists of moving to the next symbol
 
-    .. list-table:: Counting With Nine Symbols
+    .. list-table:: Counting with Ten Symbols
         :widths: 50 50
 
         * - :math:`0`
@@ -83,7 +83,7 @@ Position
         * Digit comes from latin (*digitus*), meaning finger or toe, of which, humans typically have ten of each
 
 
-    .. list-table:: Values expressed with eight digits
+    .. list-table:: Values Expressed with Eight Digits
         :widths: 50 50
 
         * - :math:`00000000`
@@ -115,7 +115,7 @@ Position
     * Change to the subsequent symbol in the next position
 
 
-    .. list-table:: Counting with eight digits
+    .. list-table:: Counting with Digits
         :widths: 50 50
 
         * - ...
@@ -158,7 +158,7 @@ Names
 * Each of these positions has a name
 * From left to right, they are
 
-    .. list-table:: Position Names
+    .. list-table:: Digit Position Names
         :widths: 50 50 50 50
 
         * - First Digit
@@ -193,6 +193,10 @@ Names
           - Ten Millions
           - :math:`10^{7}`
           - :math:`10000000`
+        * - ...
+          - ...
+          - ...
+          - ...
 
 
 * As a consequence of the counting pattern, each position corresponds to a value that is the base raised to some power
@@ -243,6 +247,166 @@ Consequence of Finite Digits
 
 Binary (Base Two)
 =================
+
+* Decimal is the typical way numbers are encoded in every day life
+* However, base ten (decimal) is only an encoding
+
+    * It's not a *number*, it's a way to represent a number
+
+
+* Other bases could just as easily be used
+* For example, binary (base two)
+* Instead of ten symbols, only two are used --- :math:`0, 1`
+
+    * :math:`0` means zero, like base ten
+    * :math:`1` means one, like base ten
+
+
+* The symbols have an ordering to the magnitude of values, like base ten
+
+    * :math:`0 \rightarrow 1`
+    * :math:`0 < 1`
+
+
+* Position matters, like base ten
+
+    * The value of a :math:`1` depends on *where* it is
+
+
+* There are an infinite number of leading zeros
+
+    * :math:`1 == 00000001 == 0000000000000001`
+
+
+* In decimal, the symbols are called digits
+* In binary, they are called *bits*
+
+    * Binary information digit --- bit
+
+
+* The counting rules are the same
+
+    * Increment to the next symbol
+    * If there are no more symbols
+
+        * Reset to :math:`0`
+        * Increment the symbol in the next position
+
+
+    .. list-table:: Counting in Binary
+        :widths: 50 50
+
+        * - :math:`00000000`
+          - Zero
+        * - :math:`00000001`
+          - One
+        * - :math:`00000010`
+          - Two
+        * - :math:`00000011`
+          - Three
+        * - :math:`00000100`
+          - Four
+        * - :math:`00000101`
+          - Five
+        * - :math:`00000110`
+          - Six
+        * - :math:`00000111`
+          - Seven
+        * - :math:`00001000`
+          - Eight
+        * - ...
+          - ...
+
+
+* With eight bits, the largest positive integer that could be represented is :math:`255`
+
+    * Can represent the numbers 0 through to 255
+
+
+* Like base ten, the specific bit position carries different values
+* These values are always the base to some power
+* Although these bit positions don't really go by specific names, they can be named like the digits
+
+    .. list-table:: Bit Position Names
+        :widths: 50 50 50 50
+
+        * - First Digit
+          - Ones
+          - :math:`2^{0}`
+          - :math:`1`
+        * - Second Digit
+          - Twos
+          - :math:`2^{1}`
+          - :math:`2`
+        * - Third Digit
+          - Fours
+          - :math:`2^{2}`
+          - :math:`4`
+        * - Fourth Digit
+          - Eights
+          - :math:`2^{3}`
+          - :math:`8`
+        * - Fifth Digit
+          - Sixteens
+          - :math:`2^{4}`
+          - :math:`16`
+        * - Sixth Digit
+          - Thirty-twos
+          - :math:`2^{5}`
+          - :math:`32`
+        * - Seventh Digit
+          - Sixty-fours
+          - :math:`2^{6}`
+          - :math:`62`
+        * - Eighth Digit
+          - One hundred and twenty eights
+          - :math:`2^{7}`
+          - :math:`128`
+        * - ...
+          - ...
+          - ...
+          - ...
+
+
+* Like base ten, the binary number can be broken down to the sum of its positional values
+* Consider the number :math:`1111011`
+
+    * One *Sixty-four*
+    * One *thirty-two*
+    * One *sixteen*
+    * One *eight*
+    * Zero *fours*
+    * One *two*
+    * One *one*
+
+
+* Thus, the number is
+
+    :math:`1 \times 2^{6} + 1 \times 2^{5} + 1 \times 2^{4} + 1 \times 2^{3} + 0 \times 2^{2} + 1 \times 2^{1} + 1 \times 2^{0}`
+
+    :math:`1 \times 64 + 1 \times 32 + 1 \times 16 + 1 \times 8 + 0 \times 4 + 1 \times 2 + 1 \times 1`
+
+    :math:`64 + 32 + 16 + 8 + 2 + 1`
+
+    :math:`123`
+
+
+.. note::
+
+    Position really matters --- have you ever counted to :math:`31` on one hand?
+
+    Typically, when counting with fingers, the position of the finger is ignored. This means that the biggest number
+    one could count to on one hand is five.
+
+    However, it is possible to make use of the position of each finger to get more out of your hand. Try it yourself.
+
+    .. figure:: finger_counting_binary_19.png
+        :width: 150 px
+        :align: center
+        :target: https://en.wikipedia.org/wiki/Finger_binary
+
+        The number 19 in binary represented with fingers. The thumb is the least significant bit (ones) and the pinky
+        finger is the most significant bit (sixteens).
 
 
 
