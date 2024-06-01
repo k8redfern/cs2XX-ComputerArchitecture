@@ -526,11 +526,6 @@ Converting Numbers Between Bases
 
 
 
-*Meaning*
-=========
-
-
-
 For Next Time
 =============
 
