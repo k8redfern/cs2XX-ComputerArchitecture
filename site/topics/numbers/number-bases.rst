@@ -386,7 +386,7 @@ Binary (Base Two)
 
     :math:`1 \times 64 + 1 \times 32 + 1 \times 16 + 1 \times 8 + 0 \times 4 + 1 \times 2 + 1 \times 1`
 
-    :math:`64 + 32 + 16 + 8 + 2 + 1`
+    :math:`64 + 32 + 16 + 8 + 0 + 2 + 1`
 
     :math:`123`
 
@@ -396,7 +396,7 @@ Binary (Base Two)
     Position really matters --- have you ever counted to :math:`31` on one hand?
 
     Typically, when counting with fingers, the position of the finger is ignored. This means that the biggest number
-    one could count to on one hand is five.
+    one could count to on one hand is five. This is effectively base 1.
 
     However, it is possible to make use of the position of each finger to get more out of your hand. Try it yourself.
 
@@ -523,6 +523,294 @@ Hexadecimal (Base 16)
 
 Converting Numbers Between Bases
 ================================
+
+* Although only three bases were discussed so far, but there is nothing stopping one from using base 5, or 123, or ...
+
+* A subscript is added to the number to specify the base when there is a potential for ambiguity
+* For example, consider the number :math:`10`
+
+    * What number is that?
+    * Is it a base ten number?
+    * Base two?
+    * Hexadecimal?
+
+
+* Ambiguity is eliminated by including the subscript
+
+    * :math:`10_{10}` means ten
+    * :math:`10_{2}` means two
+    * :math:`10_{16}` means sixteen
+
+
+* In a computing context, binary and hexadecimal are often written as ``0b10`` and ``0x10`` respectively
+
+
+Converting to Decimal
+---------------------
+
+* It is often useful to convert numbers from other bases to decimal since that is what is used in everyday life
+
+    * Saying :math:`123` is a lot easier for us to understand than saying :math:`1111011_{2}` or :math:`7B_{16}`
+    * However, an encoding is only an encoding --- these all *mean* the same thing
+
+
+* For both the binary and hexadecimal bases discussed, numbers were already converted to decimal
+
+    * :math:`1111011_{2}`
+
+        :math:`(1 \times 2^{6} + 1 \times 2^{5} + 1 \times 2^{4} + 1 \times 2^{3} + 0 \times 2^{2} + 1 \times 2^{1} + 1 \times 2^{0})_{10}`
+
+        :math:`(1 \times 64 + 1 \times 32 + 1 \times 16 + 1 \times 8 + 0 \times 4 + 1 \times 2 + 1 \times 1)_{10}`
+
+        :math:`(64 + 32 + 16 + 8 + 0 + 2 + 1)_{10}`
+
+        :math:`123_{10}`
+
+
+    * :math:`7B_{16}`
+
+        :math:`(7 \times 16^{1} + 11 \times 16^{0})_{10}`
+
+        :math:`(7 \times 16 + 11 \times 1)_{10}`
+
+        :math:`(112 + 11)_{10}`
+
+        :math:`123_{10}`
+
+
+* In general, multiply the value of the digit in base ten by the value of the base in base ten to the power of its corresponding position
+
+* For example, given some number of :math:`n` digits :math:`d` in base :math:`b`
+
+    :math:`(d_{n-1}d_{n-2}...d_{2}d_{1}d_{0})_{b}`
+
+
+* The value in base ten would be calculated as follows
+
+    :math:`(d_{n-1} \times b^{n-1} + d_{n-2} \times b^{n-2} + ... + d_{2} \times b^{2} + d_{1} \times b^{1} + d_{0} \times b^{0})_{10}`
+
+
+* Consider the number :math:`J204_{20}` --- note that :math:`J_{20} == 19_{10}` in this example
+
+
+    :math:`(19 \times 20^{3} + 2 \times 20^{2} + 0 \times 20^{1} + 4 \times 20^{0})_{10}`
+
+    :math:`(19 \times 8000 + 2 \times 400 + 0 \times 20 + 4 \times 1)_{10}`
+
+    :math:`(152000 + 800 + 0 + 4)_{10}`
+
+    :math:`152804_{10}`
+
+
+
+Converting from Decimal
+-----------------------
+
+* To convert a number from decimal to some arbitrary base :math:`b`
+
+    * Divide the number by :math:`b` and keep the quotient :math:`q_{0}` and remainder :math:`r_{0}`
+    * The value of :math:`r_{0}` is the digit for the least significant position
+    * Divide :math:`q_{0}` by the base :math:`b` to get a new quotient :math:`q_{1}` and remainder :math:`r_{1}`
+    * The value of :math:`r_{1}` is the digit for the next position
+    * Repeat until the quotient is zero
+
+
+* Consider converting the number :math:`123_{10}` to binary
+
+    .. list-table:: Converting :math:`123_{10}` to Binary
+        :widths: 50 50 50 50
+        :header-rows: 1
+
+        * - Digit/Bit Position
+          - Division
+          - :math:`q`
+          - :math:`r`
+        * - :math:`0`
+          - :math:`123/2`
+          - :math:`61`
+          - :math:`1`
+        * - :math:`1`
+          - :math:`61/2`
+          - :math:`30`
+          - :math:`1`
+        * - :math:`2`
+          - :math:`30/2`
+          - :math:`15`
+          - :math:`0`
+        * - :math:`3`
+          - :math:`15/2`
+          - :math:`7`
+          - :math:`1`
+        * - :math:`4`
+          - :math:`7/2`
+          - :math:`3`
+          - :math:`1`
+        * - :math:`5`
+          - :math:`3/2`
+          - :math:`1`
+          - :math:`1`
+        * - :math:`6`
+          - :math:`1/2`
+          - :math:`0`
+          - :math:`1`
+
+
+* Therefore, the number :math:`123_{10}` is :math:`1111011_{2}`
+
+* Consider converting the number :math:`123_{10}` to hexadecimal
+
+    .. list-table:: Converting :math:`123_{10}` to Hexadecimal
+        :widths: 50 50 50 50
+        :header-rows: 1
+
+        * - Hex Digit Position
+          - Division
+          - :math:`q`
+          - :math:`r`
+        * - :math:`0`
+          - :math:`123/16`
+          - :math:`7`
+          - :math:`11_{10}` or :math:`B_{16}`
+        * - :math:`1`
+          - :math:`7/16`
+          - :math:`0`
+          - :math:`7`
+
+
+* Therefore, the number :math:`123_{10}` is :math:`7B_{2}`
+
+
+
+Converting Between Arbitrary Bases
+----------------------------------
+
+* Converting between arbitrary bases will not be covered in detail
+
+    * If one really wants to convert between base, they can do it in two steps with decimal
+    * For example, converting from base 5 to base 7
+
+        * Convert from base five to decimal
+        * Convert from decimal to base 7
+
+
+* However, there is an interesting trick when converting between bases when one is an even power of the other
+* Consider binary and hexadecimal
+
+    * :math:`2^{4} == 16`
+
+
+* Each group of four bits corresponds to a single hexadecimal digit
+* This is perhaps best illustrated with an example
+
+    :math:`1111011_{2}`
+
+
+* Take the least significant batch of four bits and convert to hexadecimal
+
+    :math:`1011_{2} == 11_{10} == B_{16}`
+
+
+* Take the next batch of four bits, add leading zeros if necessary, and convert to hexadecimal
+
+    :math:`0111_{2} == 7_{10} == 7_{16}`
+
+
+* One can then combine the hexadecimal digits to create the hexadecimal number
+
+    :math:`1111011_{2} == 7B_{16}`
+
+
+* This works because, with any grouping of four bits, sixteen unique values can be represented
+
+    * :math:`0` through :math:`15`
+
+
+* With hexadecimal, sixteen unique values can be represented with a single hexadecimal digit
+
+    * :math:`0` through :math:`F`
+
+
+* This works in general when one base is an even power of another
+* In the below table, observe that
+
+    * Base four can be obtained by combining two bits from base two
+    * Base eight can be obtained by combining three bits from base two
+    * Base sixteen can be obtained by combining four bits from base two
+    * Base sixteen can also be obtained by combing two base four digits
+
+
+    .. list-table:: Numbers in Base two, Four, Eight, and Sixteen
+        :widths: 50 50 50 50
+        :header-rows: 1
+
+        * - Base Two
+          - Base Four
+          - Base Eight
+          - Base Sixteen
+        * - :math:`0000`
+          - :math:`00`
+          - :math:`00`
+          - :math:`0`
+        * - :math:`0001`
+          - :math:`01`
+          - :math:`01`
+          - :math:`1`
+        * - :math:`0010`
+          - :math:`02`
+          - :math:`02`
+          - :math:`2`
+        * - :math:`0011`
+          - :math:`03`
+          - :math:`03`
+          - :math:`3`
+        * - :math:`0100`
+          - :math:`10`
+          - :math:`04`
+          - :math:`4`
+        * - :math:`0101`
+          - :math:`11`
+          - :math:`05`
+          - :math:`5`
+        * - :math:`0110`
+          - :math:`12`
+          - :math:`06`
+          - :math:`6`
+        * - :math:`0111`
+          - :math:`13`
+          - :math:`07`
+          - :math:`7`
+        * - :math:`1000`
+          - :math:`20`
+          - :math:`10`
+          - :math:`8`
+        * - :math:`1001`
+          - :math:`21`
+          - :math:`11`
+          - :math:`9`
+        * - :math:`1010`
+          - :math:`22`
+          - :math:`12`
+          - :math:`A`
+        * - :math:`1011`
+          - :math:`23`
+          - :math:`13`
+          - :math:`B`
+        * - :math:`1100`
+          - :math:`30`
+          - :math:`14`
+          - :math:`C`
+        * - :math:`1101`
+          - :math:`31`
+          - :math:`15`
+          - :math:`D`
+        * - :math:`1110`
+          - :math:`32`
+          - :math:`16`
+          - :math:`E`
+        * - :math:`1111`
+          - :math:`33`
+          - :math:`17`
+          - :math:`F`
 
 
 
