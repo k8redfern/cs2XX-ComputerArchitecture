@@ -56,6 +56,15 @@ Boolean Operators and Operands
         * Denoted as :math:`a \lor b`
 
 
+.. figure:: venn_diagram_and_or_not.png
+    :width: 666 px
+    :align: center
+    :target: https://en.wikipedia.org/wiki/Boolean_algebra#Boolean_operations
+
+    Visual representations of the basic boolean operators with Venn diagrams. The images represent **and**, **or**, and
+    **not** respectively. 
+
+
 * There are additional boolean operators that can be made up from the three basic operators
 * Three of these are commonly used within the context of computer architecture, thus they will be presented here
 
@@ -84,6 +93,15 @@ Boolean Operators and Operands
         * Sometimes denoted as :math:`\overline \land`
         * Equivalent to :math:`\lnot (a \land b)`
         * Functionally complete --- can be used to generate all other boolean operators
+
+
+.. figure:: venn_diagram_nand_not_xor.png
+    :width: 666 px
+    :align: center
+    :target: https://en.wikipedia.org/wiki/Boolean_algebra#Boolean_operations
+
+    Visual representations of the additional boolean operators with Venn diagrams. The images represent **nand**,
+    **nor**, and **xor** respectively.
 
 
 
