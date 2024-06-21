@@ -341,6 +341,114 @@ Building Out the Truth Table
 Properties of Logical Operators
 ===============================
 
+* There are several algebraic properties that hold for boolean logic
+* Most of these are intuitive, but will be presented here for completness
+
+
+.. list-table:: Boolean Algebra Laws
+    :widths: auto
+    :align: center
+
+    * - Identity for :math:`\lor`
+      - :math:`a \lor false = a`
+    * - Identity for :math:`\land`
+      - :math:`a \land true = a`
+    * - Idempotence for :math:`\lor`
+      - :math:`a \lor a = a`
+    * - Idempotence for :math:`\land`
+      - :math:`a \land a = a`
+    * - Annihilator for :math:`\lor`
+      - :math:`a \lor true = true`
+    * - Annihilator for :math:`\land`
+      - :math:`a \land false = false`
+    * - Associativity of :math:`\lor`
+      - :math:`a \lor (b \lor c) = (a \lor b) \lor c`
+    * - Associativity of :math:`\land`
+      - :math:`a \land (b \land c) = (a \land b) \land c`
+    * - Commutativity of :math:`\lor`
+      - :math:`a \lor b = b \lor a`
+    * - Commutativity of :math:`\land`
+      - :math:`a \land b = b \land a`
+    * - Complementation 1
+      - :math:`a \land \lnot a = false`
+    * - Complementation 2
+      - :math:`a \lor \lnot a = true`
+    * - Double negation
+      - :math:`\lnot (\lnot a) = a`
+    * - Distributivity of :math:`\lor` over :math:`\land`
+      - :math:`a \lor (b \land c) = (a \lor b) \land (a \lor c)`
+    * - Distributivity of :math:`\land` over :math:`\lor`
+      - :math:`a \land (b \land c) = (a \land b) \lor (a \land c)`
+    * - Absorption 1
+      - :math:`a \lor (a \land b) = a`
+    * - Absorption 2
+      - :math:`a \land (a \lor b) = a`
+    * - De Morgan's 1
+      - :math:`\lnot a \lor \lnot b = \lnot (a \land b)`
+    * - De Morgan's 2
+      - :math:`\lnot a \land \lnot b = \lnot (a \lor b)`
+
+.. note::
+
+    If the absorption laws are unclear, consider the corresponding distributive and idempotent laws. For example, below
+    is the first absorption law:
+
+        :math:`a \lor (a \land b) = (a \lor a) \land (a \lor b) = a \land (a \lor b)`
+
+    If :math:`a` is :math:`false`, given the :math:`\land` annihilator law, the expression evaluates to :math:`false`.
+
+        :math:`false \land (false \lor b) = false`
+
+    If :math:`a` is :math:`true`, given the :math:`\land` identity law, the expression evaluates to the result of
+    :math:`(a \lor b)`, which, given the :math:`\lor` annihilator law, evaluates to :math:`true`, therefore, the whole
+    expression evaluates to :math:`true`.
+
+        :math:`true \land (true \lor b) = true \land true = true`
+
+    If still not convinced, below is the truth table for the first absorption law.
+
+    .. list-table:: Absorption Law 1 --- :math:`a \lor (a \land b) = a`
+        :widths: auto
+        :align: center
+        :header-rows: 1
+
+        * - :math:`a`
+          - :math:`b`
+          -
+          - :math:`a \land b`
+          -
+          - :math:`a \lor (a \land b)`
+        * - ``0``
+          - ``0``
+          -
+          - ``0``
+          -
+          - ``0``
+        * - ``0``
+          - ``1``
+          -
+          - ``0``
+          -
+          - ``0``
+        * - ``1``
+          - ``0``
+          -
+          - ``0``
+          -
+          - ``1``
+        * - ``1``
+          - ``1``
+          -
+          - ``1``
+          -
+          - ``1``
+
+
+    The proof follows similar for the second annihilation law.
+
+
+
+
 
 De Morgan's Law
 ---------------
