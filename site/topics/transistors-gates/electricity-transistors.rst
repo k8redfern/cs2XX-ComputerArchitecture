@@ -1,5 +1,5 @@
 ***************************
-Transistors and Logic Gates
+Electricity and Transistors
 ***************************
 
 * When talking about electricity and semiconductors, things can get rather nuanced and complex
