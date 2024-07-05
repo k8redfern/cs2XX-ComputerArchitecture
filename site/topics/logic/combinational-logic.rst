@@ -233,8 +233,268 @@ Decoder Symbol
 
 
 
-Multiplexers
-============
+Multiplexers (Mux)
+==================
+
+* Multiplexers (mux) are used to select one of many input signal to to map to an output
+
+    * The input signals could be arbitrary (high or low)
+    * They only have a single output
+
+
+* In addition to input signals, multiplexers have selector signals to control which input is mapped to the output
+* The below truth table demonstrates the desired functionality for a 2 bit mux
+
+.. list-table:: Two Bit Mux
+    :widths: auto
+    :align: center
+    :header-rows: 1
+
+    * - Input a
+      - Input b
+      -
+      - Select
+      -
+      - Output
+    * - ``0``
+      - ``0``
+      -
+      - ``0``
+      -
+      - ``0``
+    * - ``0``
+      - ``0``
+      -
+      - ``1``
+      -
+      - ``0``
+    * - ``0``
+      - ``1``
+      -
+      - ``0``
+      -
+      - ``0``
+    * - ``0``
+      - ``1``
+      -
+      - ``1``
+      -
+      - ``1``
+    * - ``1``
+      - ``0``
+      -
+      - ``0``
+      -
+      - ``1``
+    * - ``1``
+      - ``0``
+      -
+      - ``1``
+      -
+      - ``0``
+    * - ``1``
+      - ``1``
+      -
+      - ``0``
+      -
+      - ``1``
+    * - ``1``
+      - ``1``
+      -
+      - ``1``
+      -
+      - ``1``
+
+
+* Truth tables like this may be simplified such that the values of the input signals are treated as some variable
+
+
+.. list-table:: Two Bit Mux Simplified
+    :widths: auto
+    :align: center
+    :header-rows: 1
+
+    * - Input a
+      - Input b
+      -
+      - Select
+      -
+      - Output
+    * - ``X``
+      - ``Y``
+      -
+      - ``0``
+      -
+      - ``X``
+    * - ``X``
+      - ``Y``
+      -
+      - ``1``
+      -
+      - ``Y``
+
+
+* Here, the values of ``X`` and ``Y`` are not important
+* What is important is that the value ``X``/``Y`` is mapped to the output based on the value of the select signal
+* This simplified view is not only smaller, but arguably makes the desired functionality more clear
+
+* Below is an image of a two bit multiplexer
+* The implementation idea is similar to that of a decoder in that it uses and gates with inverted inputs
+
+.. figure:: two_bit_mux.png
+    :width: 500 px
+    :align: center
+
+    A two bit multiplexer. Two input signals are selected between with the selector. The value of the selected input
+    signal will be mapped to the output.
+
+
+* One may notice that the input signals are never inverted on any gate, only the selector signal
+* This is because, if the gate for a given input is selected, the input should be directly mapped to the output
+
+    * If the gate is selected and the input is ``1``, the and gate outputs ``1``
+    * If the gate is selected and the input is ``0``, the and gate outputs ``0``
+    * If the gate is not selected with the selector, the and gate always outputs ``0``
+
+
+.. note::
+
+    Notice that there is an or gate before the final output signal. This or gate's only purpose is to combine all the
+    outputs to a single line. However, one may wonder why it's necessary to use an or gate instead of simply combining
+    the signals like in the below image.
+
+    .. figure:: combining_output_signals_bad.png
+        :width: 333 px
+        :align: center
+
+        Combining output signals on a single line directly creates problems and should not be done. This is true even if
+        only one output line would be active at any given time. Instead, to combine output lines, use or gates.
+
+
+    Connecting output signals like this will not work in practice. The nuanced reasoning for this is beyond the scope of
+    the course and depends on the configuration of the transistors and other components within the logic gates. But
+    briefly, often, when a gate outputs ``0``, its output is actually tied to ground. This means, if any other signal
+    connected to the line is ``1``, it will ultimately be pulled to ground through the gates outputting ``0``, thereby
+    making the whole line ``0``, even though it should be ``1``.
+
+    To avoid the problem, an or gate is typically used to combine signals.
+
+
+* Below is a four bit multiplexer
+
+.. figure:: four_bit_mux.png
+    :width: 500 px
+    :align: center
+
+    A Four bit multiplexer. This design will scale to any input size as long as there are sufficient selector lines.
+
+
+
+* Notice that the design is a scaled up version of the two bit multiplexer
+* This design scales such that one can create multiplexers of any size
+
+    * Here, the constraint is that for :math:`2^{n}` inputs, :math:`n` selector bits are needed
+
+
+Multiplexer Symbol
+------------------
+
+* Like decoders, multiplexers are a common tool that are often represented with a single symbol
+* Unlike decoders, multiplexers have a common symbol, which is similar to the decoder's symbol in Digital
+
+.. figure:: mux_symbol.png
+    :width: 333 px
+    :align: center
+
+    The trapezoid component represents a four bit decoder.
+
+
+* The above image shows a four bit multiplexer
+
+    * Four inputs
+    * Two selectors
+    * One output
+
+
+* Within this image, the input/output symbols are minimized for easier representation
+* Further, the two select signals are merged into a single signal line with a splitter/merger
+
+
+Demultiplexer (Demux)
+---------------------
+
+* A demultiplexer (demux) is another common tool
+* It is the inverse of a multiplexer
+
+    * Take one input and output it to some selected output signal line
+
+
+.. figure:: mux_demux_symbols.png
+    :width: 500 px
+    :align: center
+
+    Multiplexer with an output directly connected to a demultiplexer.
+
+
+* Below is a simplified truth table with the functionality of a demultiplexer
+
+.. list-table:: Four Bit Demux Simplified
+    :widths: auto
+    :align: center
+    :header-rows: 1
+
+    * - Input
+      -
+      - Select b
+      - Select a
+      -
+      - Output 0
+      - Output 1
+      - Output 2
+      - Output 3
+    * - ``X``
+      -
+      - ``0``
+      - ``0``
+      -
+      - ``X``
+      - ``0``
+      - ``0``
+      - ``0``
+    * - ``X``
+      -
+      - ``0``
+      - ``1``
+      -
+      - ``0``
+      - ``X``
+      - ``0``
+      - ``0``
+    * - ``X``
+      -
+      - ``1``
+      - ``0``
+      -
+      - ``0``
+      - ``0``
+      - ``X``
+      - ``0``
+    * - ``X``
+      -
+      - ``1``
+      - ``1``
+      -
+      - ``0``
+      - ``0``
+      - ``0``
+      - ``X``
+
+
+* One may notice that this is very similar to a decoder
+* The difference is that
+
+    * Instead of outputting ``1`` on the selected signal like a decoder
+    * A demultiplexer maps the arbitrary value of the input to the output
 
 
 
@@ -252,6 +512,7 @@ For Next Time
 =============
 
 * Check out the :download:`Decoder <1-2_and_2-4_decoders.dig>` schematic for Digital
+* Check out the :download:`Multiplexer <2_and_4_multiplexer.dig>` schematic for Digital
 * Read Chapter 3 Sections 5 of your text
 
     * 3 pages
