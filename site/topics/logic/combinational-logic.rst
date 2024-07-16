@@ -785,6 +785,68 @@ Programmable Logic Array/Look Up Table Symbol
 Functional Completeness
 =======================
 
+* As seen with PLAs, any boolean logic function can be implemented systematically
+
+    * In other words, any function can be physically created with configurations of AND, OR, and NOT gates
+
+
+* This means that the set of {AND, OR, NOT} gates is *Functionally complete*
+* Although other gates exist, they are not necessary for implementing any function
+
+    * Nevertheless, they may make configuring a circuit for some functionality simpler
+
+
+* However, review De Morgan's Laws
+
+      * :math:`\lnot a \lor \lnot b = \lnot (a \land b)`
+      * :math:`\lnot a \land \lnot b = \lnot (a \lor b)`
+
+
+* This shows that, with OR and NOT gates, one can create the functionality of an AND gate
+
+      * :math:`\lnot(\lnot a \lor \lnot b) = \lnot(\lnot (a \land b)) = a \land b`
+
+
+.. figure:: and_with_or_and_not_gates.png
+    :width: 500 px
+    :align: center
+
+    Implementation of and gate functionality with only or gate and not gates.
+
+
+* Similarly, with AND and NOT gates, the functionality of an OR gate can be created
+
+    * :math:`\lnot(\lnot a \land \lnot b) = \lnot(\lnot (a \lor b)) = a \lor b`
+
+.. figure:: or_with_and_and_not_gates.png
+    :width: 500 px
+    :align: center
+
+    Implementation of and gate functionality with only or gate and not gates.
+
+
+* Therefore, the set of {AND, NOT} and {OR, NOT} are also functionally complete
+
+
+Minimal Set
+-----------
+
+* One may wonder if a single gate type is sufficient to have a functionally complete set
+* To prove this is the case, all one needs to do is show that the single gate type can
+
+    * Implement the :math:`not` operation
+    * Implement the :math:`and` operation
+    * Implement the :math:`or` operation
+
+
+* Seeing the reduced sets made up of {AND, NOT}/{OR, NOT}, one may wonder if {NAND} and {NOR} are functionally complete
+
+.. admonition:: Activity
+
+    Show that {NAND} and {NOR} are functionally complete.
+
+
+
 
 
 For Next Time
@@ -793,6 +855,7 @@ For Next Time
 * Check out the :download:`Decoder <1-2_and_2-4_decoders.dig>` schematic for Digital
 * Check out the :download:`Multiplexer <2_and_4_multiplexer.dig>` schematic for Digital
 * Check out the :download:`Programmable Logic Array <programmable_logic_array.dig>` schematic for Digital
+* Check out the :download:`Functional Completeness <functional_completeness.dig>` schematic for Digital
 * Read Chapter 3 Sections 5 of your text
 
     * 3 pages
