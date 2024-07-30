@@ -279,6 +279,52 @@ Controlling Reads
 
 
 
+RAM Symbols
+-----------
+
+* Digital provides several variations of RAM, most of which will not likely be used in this course
+* Two that are likely to be used will be
+
+    * RAM with separate data ports
+    * Ram with a shared data port
+
+
+.. figure:: ram_symbols.png
+    :width: 333 px
+    :align: center
+
+    Two examples of RAM symbols. The left symbol represents RAM with two separate data ports --- data can only be
+    written to RAM through the :math:`D_{in}` input, and data can only be read from the :math:`D` output. The right
+    symbol represents RAM with shared data ports --- both reads and writes happen from the same :math:`D` input/output.
+
+
+* The RAM with separate data ports has
+
+    * Independent input and output lines
+    * Data can only be written to RAM through the :math:`D_{in}` input line
+    * Data can only be read from RAM through the :math:`D` output line
+
+
+* The RAM with a shared data port has
+
+    * Shared input and output lines
+    * Data is written to and read from RAM through the single :math:`D` line
+
+
+* The RAM design discussed above aligns with the RAM with separate data ports
+
+    * However, it can be modified to share the same data line by connecting the outputs back to the input lines
+
+
+.. note::
+
+    The style of RAM discussed here is called *static RAM* (SRAM), and is a very high quality, but expensive way of
+    making RAM. Whatever data is latched into RAM will remain there until power is removed from the circuit.
+
+    In modern computers, a different style called *dynamic RAM* (DRAM) is often used. The nuanced details of which will
+    not be covered here, but briefly, instead of using a form of latch to store a bit, DRAM uses a single transistor and
+    a capacitor, which stores a temporary charge that needs to be continuously re-charged by a separate circuit.
+
 
 
 For Next Time
