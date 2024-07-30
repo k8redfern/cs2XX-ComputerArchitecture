@@ -72,7 +72,6 @@ Office Hours
     topics/memory/latches-flipflops
     topics/memory/registers-ram
     topics/layout/bus
-    topics/logic/sequential-logic
     topics/arithmetic/adder
     topics/numbers/2s-complement
     topics/logic/logic-engine
