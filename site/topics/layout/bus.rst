@@ -269,6 +269,177 @@ Loading Data into RAM
 Swapping Data
 =============
 
+* Now consider a more complex problem --- swap the values between the two memory addresses
+
+    * Move the contents of memory address ``00``, which is ``0001`` to memory address ``01``
+    * And move the contents of address ``01`` (``1000``) to memory address ``00``
+
+
+* Be careful to not overwrite the values in either memory address
+
+    * A third, unused memory address should be used to ensure no data is lost
+
+
+* What would this program be?
+* At a high level, the solution would be
+
+    * Move the value stored at memory address ``00`` to a free address, such as ``10``
+    * Move the value at memory address ``01`` to ``00``
+    * Move the value in address ``10`` to ``01``
+
+
+* However, RAM can only output *or* input at a clock pulse
+
+    * It's not possible to move a value between RAM addresses directly
+
+
+* This is where the register comes in
+
+    * The register will serve as temporary storage to facilitate moving data between RAM addresses
+
+
+* This means the strategy to swap data would more accurately be
+
+    * Move the value from memory address ``00`` to the register
+    * Move the value from the register to address ``10``
+    * Move the value at address ``01`` to the register
+    * Move the value from the register to address ``00``
+    * Move address ``10``\'s value to the register
+    * Move the register's value to ``01``
+
+
+* Below is a table showing the program of how the signals should be set along the busses
+
+.. list-table:: Program to swap values between memory address ``00`` and ``01``
+    :widths: auto
+    :align: center
+    :header-rows: 1
+
+    * - :math:`RM_{i}`
+      - :math:`RM_{o}`
+      - :math:`RG_{i}`
+      - :math:`RG_{o}`
+      -
+      - :math:`A_{1}`
+      - :math:`A_{0}`
+      -
+      - :math:`D_{3}`
+      - :math:`D_{2}`
+      - :math:`D_{1}`
+      - :math:`D_{0}`
+      -
+      - :math:`C`
+    * - ``0``
+      - ``1``
+      - ``1``
+      - ``0``
+      -
+      - ``0``
+      - ``0``
+      -
+      - ``Z``
+      - ``Z``
+      - ``Z``
+      - ``Z``
+      -
+      - ``C``
+    * - ``1``
+      - ``0``
+      - ``0``
+      - ``1``
+      -
+      - ``1``
+      - ``0``
+      -
+      - ``Z``
+      - ``Z``
+      - ``Z``
+      - ``Z``
+      -
+      - ``C``
+    * - ``0``
+      - ``1``
+      - ``1``
+      - ``0``
+      -
+      - ``0``
+      - ``1``
+      -
+      - ``Z``
+      - ``Z``
+      - ``Z``
+      - ``Z``
+      -
+      - ``C``
+    * - ``1``
+      - ``0``
+      - ``0``
+      - ``1``
+      -
+      - ``0``
+      - ``0``
+      -
+      - ``Z``
+      - ``Z``
+      - ``Z``
+      - ``Z``
+      -
+      - ``C``
+    * - ``0``
+      - ``1``
+      - ``1``
+      - ``0``
+      -
+      - ``1``
+      - ``0``
+      -
+      - ``Z``
+      - ``Z``
+      - ``Z``
+      - ``Z``
+      -
+      - ``C``
+    * - ``1``
+      - ``0``
+      - ``0``
+      - ``1``
+      -
+      - ``0``
+      - ``1``
+      -
+      - ``Z``
+      - ``Z``
+      - ``Z``
+      - ``Z``
+      -
+      - ``C``
+
+
+.. figure:: ram_register_schematic_a0_a2.png
+    :width: 666 px
+    :align: center
+
+    The left image shows how the signals should be set for moving the contents of memory address ``00`` to the register.
+    The right shows how they should be set to move the contents of the register to memory address ``10``. These two
+    images correspond to the first two rows in the above table.
+
+
+.. figure:: ram_register_schematic_a1_a0.png
+    :width: 666 px
+    :align: center
+
+    The left image shows the signals for moving the contents of memory address ``01`` to the register and the right
+    shows how to move the contents of the register to address ``00``. These two images correspond to the middle two
+    tows in the above table.
+
+
+.. figure:: ram_register_schematic_a2_a1.png
+    :width: 666 px
+    :align: center
+
+    The left shows how to move the contents of address ``10`` to the register, and the right shows how to move the data
+    in the register to memory address ``01``. These two images correspond to the last two rows in the above table.
+
 
 
 For Next Time
