@@ -268,6 +268,7 @@ Full Adder Symbol
 For Next Time
 =============
 
+* `Watch Ben Eater's video on 2s compliment <https://www.youtube.com/watch?v=4qH4unVtJkE>`_   
 * Read Chapter 2 Section 3 of your text
 
     * 2 pages
