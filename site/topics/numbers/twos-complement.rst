@@ -245,9 +245,246 @@ Problems and Limitations
 
 
 
-
 One's Compliment
 ================
+
+* A potential alternative to using a sign bit is *ones complement*
+* The strategy is similar to a sign bit, but with ones complement, all bits are flipped for negative numbers
+
+    * Take the *complement* of each bit
+
+.. list-table:: All four bit values representable with the ones complement
+    :widths: auto
+    :align: center
+
+    * - ``1000``
+      - :math:`-7`
+    * - ``1001``
+      - :math:`-6`
+    * - ``1010``
+      - :math:`-5`
+    * - ``1011``
+      - :math:`-4`
+    * - ``1100``
+      - :math:`-3`
+    * - ``1101``
+      - :math:`-2`
+    * - ``1110``
+      - :math:`-1`
+    * - ``1111``
+      - :math:`-0`
+    * - ``0000``
+      - :math:`0`
+    * - ``0001``
+      - :math:`1`
+    * - ``0010``
+      - :math:`2`
+    * - ``0011``
+      - :math:`3`
+    * - ``0100``
+      - :math:`4`
+    * - ``0101``
+      - :math:`5`
+    * - ``0110``
+      - :math:`6`
+    * - ``0111``
+      - :math:`7`
+
+
+* Like with a sign bit, it is simple to identify negative numbers by looking for a ``1`` in the most significant bit
+
+* But the issue of the pattern for negative numbers changing depending on the number of bits is *somewhat* resolved
+* Consider the number :math:`-3`
+
+    * With three bits, :math:`-3` is represented as ``100``
+    * With four bits, :math:`-3` is represented as ``1100``
+
+* Although the pattern is different, the idea is that negative numbers have an infinite number of leading ``1``\s
+
+    * As opposed to an infinite number of ``0``\s as with positive numbers
+
+
+Problems and Limitations
+------------------------
+
+* Unfortunately, ones complement still has the oddity of having two patterns for the number :math:`0`
+
+    * ``0000`` for :math:`0`
+    * ``1111`` for :math:`-0`
+
+
+* Further, addition with negative numbers is still not perfect
+
+
+.. list-table:: Adding a negative binary number with ones complement
+    :widths: auto
+    :align: center
+
+    * - **Carry**
+      -
+      -
+      -
+      -
+      -
+      -
+      -
+    * - **Number 1**
+      -
+      - ``0``
+      - ``1``
+      - ``0``
+      - ``1``
+      -
+      - :math:`5`
+    * - **Number 2**
+      -
+      - ``1``
+      - ``0``
+      - ``1``
+      - ``0``
+      -
+      - :math:`-5`
+    * - **Sum**
+      -
+      - ``1``
+      - ``1``
+      - ``1``
+      - ``1``
+      -
+      - :math:`-0`
+
+
+* The above example results in a correct addition, but issues arise with non zero results
+
+.. note::
+
+    With binary addition and a fixed number of bits, any carry that results in an overflow will ultimately be ignored.
+    For example, consider the four bit addition of ``1111`` (:math:`7`) + ``0001`` (:math:`1`). The result is clearly
+    ``10000`` (:math:`8`), but since there are only four bits available, the overflowed value is lost, and the result
+    would be ``0000``.
+
+
+.. list-table:: Adding a negative binary number with ones complement
+    :widths: auto
+    :align: center
+
+    * - **Carry**
+      -
+      - ``1``
+      -
+      -
+      -
+      -
+      -
+    * - **Number 1**
+      -
+      - ``0``
+      - ``1``
+      - ``0``
+      - ``1``
+      -
+      - :math:`5`
+    * - **Number 2**
+      -
+      - ``1``
+      - ``1``
+      - ``0``
+      - ``0``
+      -
+      - :math:`-3`
+    * - **Sum**
+      -  (ignore overflow) ``1``
+      - ``0``
+      - ``0``
+      - ``0``
+      - ``1``
+      -
+      - :math:`1?`
+
+
+.. list-table:: Adding a negative binary number with ones complement
+    :widths: auto
+    :align: center
+
+    * - **Carry**
+      -
+      - ``1``
+      -
+      -
+      -
+      -
+      -
+    * - **Number 1**
+      -
+      - ``1``
+      - ``1``
+      - ``0``
+      - ``1``
+      -
+      - :math:`-2`
+    * - **Number 2**
+      -
+      - ``0``
+      - ``1``
+      - ``1``
+      - ``0``
+      -
+      - :math:`6`
+    * - **Sum**
+      -  (ignore overflow) ``1``
+      - ``0``
+      - ``0``
+      - ``1``
+      - ``1``
+      -
+      - :math:`3?`
+
+
+.. list-table:: Adding a negative binary number with ones complement
+    :widths: auto
+    :align: center
+
+    * - **Carry**
+      -
+      - ``1``
+      - ``1``
+      - ``1``
+      -
+      -
+      -
+    * - **Number 1**
+      -
+      - ``1``
+      - ``0``
+      - ``1``
+      - ``1``
+      -
+      - :math:`-4`
+    * - **Number 2**
+      -
+      - ``1``
+      - ``1``
+      - ``0``
+      - ``1``
+      -
+      - :math:`-2`
+    * - **Sum**
+      -  (ignore overflow) ``1``
+      - ``1``
+      - ``0``
+      - ``0``
+      - ``0``
+      -
+      - :math:`-7?`
+
+
+* The fact that the overflow value is lost is important for addition of negative numbers to work
+* However, when looking at these results, it is clear that addition with negative numbers doesn't quite work
+* Except for when the sum is :math:`0`, all results are one less than what they should be
+* In fact, considering :math:`-0` is a strange number, maybe the sum should be :math:`0`, which is also off by one
+
+    * Refer to the table of four bit ones complement binary numbers to make this more clear
+    * Notice how each sum is one row above where the sum should be
 
 
 
