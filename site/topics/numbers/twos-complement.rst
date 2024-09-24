@@ -725,6 +725,24 @@ Negation and Subtraction
     * Here, the full adder is adding zero to the inverted input value with a carry in bit that is always ``1``
 
 
+* Subtraction can be done by providing a way to negate one of the input values to a full adder
+
+.. figure:: subtraction.png
+    :width: 500 px
+    :align: center
+
+    A full adder with the ability to perform subtraction. Here, :math:`sub` controls whether the adder is performing
+    subtraction as it provides a way to flip the bits of one of the inputs with the use of XOR while also controlling
+    the value on the adder's carry in (:math:`C_{i}`).
+
+
+* Here, a :math:`sub` input provides a way to toggle the negation of one of the inputs
+
+    * When :math:`sub` is high, XOR will flip the bits of the input and the carry in input to the adder will be high
+    * When :math:`1`sub` is low, XOR has no effect and the carry in value for the adder will be low
+
+
+* With this configuration, the full adder can be toggled to perform addition or subtraction
 
 
 
