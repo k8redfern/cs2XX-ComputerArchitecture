@@ -705,6 +705,29 @@ Two's Compliment
 
 
 
+Negation and Subtraction
+========================
+
+* There are many ways one could physically implement two's complement negation
+* A simple strategy is to literally NOT every bit and add one via a full adder
+
+
+.. figure:: twos_complement_negation.png
+    :width: 500 px
+    :align: center
+
+    Negating an eight bit binary value to two's complement encoding. Here, the value is negated by applying NOT to each
+    bit and adding one.
+
+
+* In the above example, the input bits are flipped with a NOT gate and one is added with a full adder
+
+    * Here, the full adder is adding zero to the inverted input value with a carry in bit that is always ``1``
+
+
+
+
+
 For Next Time
 =============
 
