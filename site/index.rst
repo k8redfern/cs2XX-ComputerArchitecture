@@ -76,7 +76,8 @@ Office Hours
     topics/numbers/twos-complement
     topics/alu/esap-alu
     topics/memory/esap-ram
-
+    topics/output/seven-segment-displays
+    topics/output/output-register
 
 
 
