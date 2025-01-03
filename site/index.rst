@@ -82,6 +82,7 @@ Office Hours
     topics/output/seven-segment-displays
     topics/output/output-register
     topics/program-counter/program-counter
+    topics/control-logic/instructions-microcodes
 
 
 
